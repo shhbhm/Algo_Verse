@@ -1,6 +1,6 @@
 # Algorithm Visualizer
 
-An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, and CPU scheduling algorithms.
+An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, CPU scheduling algorithms and Classic OS synchronization problems.
 
 ## 🎯 Features
 
