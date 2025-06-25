@@ -1,0 +1,390 @@
+/* Scheduling Algorithms Page Styling */
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 70px);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #1e293b, #7c3aed, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Controls Section */
+.controls-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.algorithm-selector, .quantum-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.algorithm-selector label, .quantum-input label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.algorithm-selector select, .quantum-input input {
+    padding: 10px 12px;
+    border: 2px solid rgba(148, 163, 184, 0.3);
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    min-width: 200px;
+    transition: all 0.3s ease;
+}
+
+.algorithm-selector select:focus, .quantum-input input:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-buttons button {
+    padding: 12px 20px;
+    border: 2px solid rgba(124, 58, 237, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1e293b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.action-buttons button:hover {
+    background: #7c3aed;
+    color: white;
+    border-color: #7c3aed;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Process Input Section */
+.process-input-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.process-input-section h3 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.process-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    align-items: end;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    padding: 10px 12px;
+    border: 2px solid rgba(148, 163, 184, 0.3);
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Table Styling */
+.process-table-section, .results-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.process-table-section h3, .results-section h3, .results-section h4 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table th {
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    color: #374151;
+    font-size: 14px;
+}
+
+table tbody tr:hover {
+    background: rgba(124, 58, 237, 0.05);
+}
+
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+/* Gantt Chart Section */
+.gantt-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.gantt-section h3 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.gantt-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+.gantt-chart {
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    position: relative;
+}
+
+.gantt-timeline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    min-width: 100%;
+    position: relative;
+}
+
+.gantt-process {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    border-radius: 6px;
+    position: absolute;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.gantt-process:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 100 !important;
+}
+
+.gantt-time-labels {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #64748b;
+    position: relative;
+}
+
+.time-label {
+    text-align: center;
+    min-width: 20px;
+    position: absolute;
+    font-weight: 500;
+}
+
+/* Results Section */
+.metrics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+}
+
+.metric-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.metric-card span {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.detailed-results {
+    margin-top: 2rem;
+}
+
+/* Process Colors for Gantt Chart */
+.process-color-1 { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.process-color-2 { background: linear-gradient(135deg, #f97316, #ea580c); }
+.process-color-3 { background: linear-gradient(135deg, #eab308, #ca8a04); }
+.process-color-4 { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.process-color-5 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+.process-color-6 { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.process-color-7 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.process-color-8 { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .controls-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action-buttons {
+        justify-content: center;
+    }
+
+    .process-form {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .metrics-container {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    table th, table td {
+        padding: 8px 6px;
+    }
+} 

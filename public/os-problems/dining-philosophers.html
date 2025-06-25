@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styling/style_home.css" />
+    <link rel="stylesheet" href="../styling/style_graph.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@531&display=swap" rel="stylesheet" />
+    <title>Dining Philosophers Visualizer</title>
+    <style>
+        .visualization-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .canvas-container {
+            flex: 2;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .controls-panel {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        #philosophersCanvas {
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .status-panel {
+            margin-top: 20px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .philosopher-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .thinking { background: #3498db; color: white; }
+        .hungry { background: #f39c12; color: white; }
+        .eating { background: #27ae60; color: white; }
+        .deadlocked { background: #e74c3c; color: white; }
+        
+        .log-panel {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px;
+        }
+        .control-group {
+            margin: 15px 0;
+        }
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .statistics {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        .algorithm-selector {
+            margin: 10px 0;
+        }
+        .algorithm-selector select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <div class="navlen">
+        <div class="navbar">
+            <box class="element element-left">
+                <div class="logo-icon">AV</div>
+                <a href="/" class="dynamic-logo">Algorithm Visualizer</a>
+            </box>
+            <box class="element">
+                <a href="os-problems.html" style="margin-right: 15px;">← OS Problems</a>
+                <a href="https://www.linkedin.com/in/shubhamcse27/" target="_blank" style="margin-right: 15px;">
+                    <i class="fab fa-linkedin"></i>LinkedIn</a>
+                <a href="https://github.com/shhbhm" target="_blank">
+                    <i class="fab fa-github-square"></i>Github</a>
+            </box>
+        </div>
+    </div>
+
+    <div class="flex-labels">
+        <div class="flex-label-items">
+            <label for="algorithm">Solution Algorithm:</label>
+            <select id="algorithm" name="algorithm">
+                <option value="resource-hierarchy">Resource Hierarchy (Deadlock-Free)</option>
+            </select>
+        </div>
+        <div class="flex-label-items">
+            <label for="philosophers">Number of Philosophers:</label>
+            <select id="philosophers" name="philosophers">
+                <option value="3">3 Philosophers</option>
+                <option value="4">4 Philosophers</option>
+                <option value="5" selected>5 Philosophers</option>
+                <option value="6">6 Philosophers</option>
+                <option value="7">7 Philosophers</option>
+            </select>
+        </div>
+        <div class="flex-label-items">
+            <label for="speed">Simulation Speed:</label>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" value="5" class="slider" id="speed">
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-buttons">
+        <div class="flex-button-items"><button id="startBtn" class="start">START</button></div>
+        <div class="flex-button-items"><button id="pauseBtn" class="refresh">PAUSE</button></div>
+        <div class="flex-button-items"><button id="resetBtn" class="reset">RESET</button></div>
+        <div class="flex-button-items"><button id="stepBtn" class="reset">STEP</button></div>
+    </div>
+
+    <div class="visualization-container">
+        <div class="canvas-container">
+            <canvas id="philosophersCanvas" width="600" height="600"></canvas>
+            
+            <div class="status-panel">
+                <h3>🍽️ Philosopher Status</h3>
+                <div id="philosopherStatuses"></div>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <h3>📊 Simulation Control</h3>
+            
+            <div class="algorithm-selector">
+                <label>Algorithm Details:</label>
+                <div id="algorithmDescription"></div>
+            </div>
+
+            <div class="statistics">
+                <h4>📈 Statistics</h4>
+                <div class="stat-item">
+                    <span>Running Time:</span>
+                    <span id="runningTime">0s</span>
+                </div>
+                <div class="stat-item">
+                    <span>Total Meals:</span>
+                    <span id="totalMeals">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Deadlocks:</span>
+                    <span id="deadlockCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Max Waiting Time:</span>
+                    <span id="maxWaitTime">0s</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Fork States:</label>
+                <div id="forkStates"></div>
+            </div>
+
+            <div class="log-panel" id="logPanel">
+                <div class="log-entry">🔧 Dining Philosophers Simulator Ready</div>
+                <div class="log-entry">Select algorithm and click START to begin</div>
+            </div>
+
+            <div style="margin-top: 15px; font-size: 12px; color: #7f8c8d;">
+                <strong>Legend:</strong><br>
+                🟦 Thinking | 🟧 Hungry | 🟩 Eating | 🟥 Deadlocked<br>
+                Fork colors: 🔴 In use | ⚪ Available
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dining-philosophers.js"></script>
+</body>
+</html> 

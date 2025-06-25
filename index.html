@@ -1,0 +1,133 @@
+<!--
+Algorithm Visualizer
+Copyright (c) 2025 Shubham Solanki
+All rights reserved.
+
+This project is an interactive algorithm visualization tool featuring
+pathfinding algorithms, sorting algorithms, and CPU scheduling algorithms.
+-->
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="public/styling/style_home.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@531;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Primary Meta Tags -->
+    <title>Algorithm Visualizer</title>
+    <meta name="title" content="Algorithm Visualizer">
+    <meta name="description" content="Visualize working of complex algorithms, play with them, and know them better.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/shhbhm">
+    <meta property="og:title" content="Algorithm Visualizer">
+    <meta property="og:description"
+        content="Visualize working of complex algorithms, play with them, and know them better.">
+    <meta property="og:image"
+        content="https://user-images.githubusercontent.com/26124625/94157470-e811f400-fe9e-11ea-8a7e-d9a08fe1d542.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://github.com/shhbhm">
+    <meta property="twitter:title" content="Algorithm Visualizer">
+    <meta property="twitter:description"
+        content="Visualize working of complex algorithms, play with them, and know them better.">
+    <meta property="twitter:image"
+        content="https://user-images.githubusercontent.com/26124625/94157470-e811f400-fe9e-11ea-8a7e-d9a08fe1d542.png">
+
+    <title>Algorithm Visualizer</title>
+</head>
+
+<body>
+    <div class="navlen">
+        <div class="navbar">
+            <box class="element element-left">
+                <div class="logo-icon">AV</div>
+                <a href="/" class="dynamic-logo">Algorithm Visualizer</a>
+            </box>
+            <box class="element">
+                <a href="https://www.linkedin.com/in/shubhamcse27/" target="_blank" style="margin-right: 15px;">
+                    <i class="fab fa-linkedin"></i>LinkedIn</a>
+                <a href="https://github.com/shhbhm" target="_blank">
+                    <i class="fab fa-github-square"></i>Github</a>
+            </box>
+        </div>
+    </div>
+    <section class="main-content">
+        <div class="main-content-logo">
+            <div class="logo-icon">AV</div>
+            <h1 class="main-title">Algorithm Visualizer</h1>
+            <p class="main-subtitle">Explore and understand algorithms through interactive visualizations</p>
+        </div>
+        <div class="flex-cards">
+            <div class="flex-card-items first-card" onclick="location.href='/public/graph/graph.html'">
+                <div class="card-icon">🗺️</div>
+                <heading>Path Finding Algorithms</heading>
+                <content>
+                    <ul>
+                        <li>Dijkstra's Algorithm</li>
+                        <li>A* Algorithm</li>
+                        <li>Depth First Search (DFS)</li>
+                        <li>Breadth First Search (BFS)</li>
+                    </ul>
+                </content>
+                <div class="card-footer">
+                    <span class="explore-text">Click to explore →</span>
+                </div>
+            </div>
+            <div class="flex-card-items second-card" onclick="location.href='public/sorting/sorting_page.html'">
+                <div class="card-icon">📊</div>
+                <heading>Array Sorting Algorithms</heading>
+                <content>
+                    <ul>
+                        <li>Bubble Sort</li>
+                        <li>Insertion Sort</li>
+                        <li>Merge Sort</li>
+                        <li>Quick Sort</li>
+                        <li>Heap Sort</li>
+                        <li>Selection Sort</li>
+                    </ul>
+                </content>
+                <div class="card-footer">
+                    <span class="explore-text">Click to explore →</span>
+                </div>
+            </div>
+            <div class="flex-card-items third-card" onclick="location.href='public/scheduling/scheduling_page.html'">
+                <div class="card-icon">⚙️</div>
+                <heading>CPU Scheduling Algorithms</heading>
+                <content>
+                    <ul>
+                        <li>First Come First Serve (FCFS)</li>
+                        <li>Shortest Job First (SJF)</li>
+                        <li>Shortest Remaining Time First (SRTF)</li>
+                        <li>Round Robin (RR)</li>
+                        <li>Priority Scheduling</li>
+                    </ul>
+                </content>
+                <div class="card-footer">
+                    <span class="explore-text">Click to explore →</span>
+                </div>
+            </div>
+            <div class="flex-card-items fourth-card" onclick="location.href='public/os-problems/os-problems.html'">
+                <div class="card-icon">🔧</div>
+                <heading>Classic OS Problems</heading>
+                <content>
+                    <ul>
+                        <li>Dining Philosophers</li>
+                        <li>Sleeping Barber</li>
+                        <li>Producer-Consumer</li>
+                        <li>Readers-Writers</li>
+                    </ul>
+                </content>
+                <div class="card-footer">
+                    <span class="explore-text">Click to explore →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

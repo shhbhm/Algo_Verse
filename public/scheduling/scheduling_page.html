@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Algorithms - Algorithm Visualizer</title>
+    <link rel="stylesheet" href="../styling/style_home.css">
+    <link rel="stylesheet" href="../styling/style_scheduling.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@531;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div class="navlen">
+        <div class="navbar">
+            <box class="element element-left">
+                <div class="logo-icon">AV</div>
+                <a href="/" class="dynamic-logo">Algorithm Visualizer</a>
+            </box>
+            <box class="element">
+                <a href="https://www.linkedin.com/in/shubhamcse27/" target="_blank" style="margin-right: 15px;">
+                    <i class="fab fa-linkedin"></i>LinkedIn</a>
+                <a href="https://github.com/shhbhm" target="_blank">
+                    <i class="fab fa-github-square"></i>Github</a>
+            </box>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">CPU Scheduling Algorithms</h1>
+            <p class="page-subtitle">Visualize process scheduling with interactive Gantt charts</p>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <div class="algorithm-selector">
+                <label for="algorithm">Select Algorithm:</label>
+                <select id="algorithm">
+                    <option value="fcfs">First Come First Serve (FCFS)</option>
+                    <option value="sjf">Shortest Job First (SJF)</option>
+                    <option value="srtf">Shortest Remaining Time First (SRTF)</option>
+                    <option value="rr">Round Robin (RR)</option>
+                    <option value="priority">Priority Scheduling</option>
+                </select>
+            </div>
+
+            <div class="quantum-input" id="quantumSection" style="display: none;">
+                <label for="timeQuantum">Time Quantum:</label>
+                <input type="number" id="timeQuantum" value="2" min="1" max="10">
+            </div>
+
+            <div class="action-buttons">
+                <button id="addProcessBtn">Add Process</button>
+                <button id="simulateBtn">Simulate</button>
+                <button id="clearBtn">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Process Input Section -->
+        <div class="process-input-section">
+            <h3>Process Information</h3>
+            <div class="process-form">
+                <div class="input-group">
+                    <label for="processId">Process ID:</label>
+                    <input type="text" id="processId" placeholder="P1">
+                </div>
+                <div class="input-group">
+                    <label for="arrivalTime">Arrival Time:</label>
+                    <input type="number" id="arrivalTime" value="0" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="burstTime">Burst Time:</label>
+                    <input type="number" id="burstTime" value="1" min="1">
+                </div>
+                <div class="input-group priority-input" style="display: none;">
+                    <label for="priority">Priority:</label>
+                    <input type="number" id="priority" value="1" min="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Table -->
+        <div class="process-table-section">
+            <h3>Process Queue</h3>
+            <div class="table-container">
+                <table id="processTable">
+                    <thead>
+                        <tr>
+                            <th>Process ID</th>
+                            <th>Arrival Time</th>
+                            <th>Burst Time</th>
+                            <th class="priority-column" style="display: none;">Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Process rows will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Gantt Chart Section -->
+        <div class="gantt-section">
+            <h3>Gantt Chart</h3>
+            <div class="gantt-container">
+                <div id="ganttChart" class="gantt-chart">
+                    <!-- Gantt chart will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section">
+            <h3>Performance Metrics</h3>
+            <div class="metrics-container">
+                <div class="metric-card">
+                    <h4>Average Waiting Time</h4>
+                    <span id="avgWaitingTime">-</span>
+                </div>
+                <div class="metric-card">
+                    <h4>Average Turnaround Time</h4>
+                    <span id="avgTurnaroundTime">-</span>
+                </div>
+                <div class="metric-card">
+                    <h4>Average Response Time</h4>
+                    <span id="avgResponseTime">-</span>
+                </div>
+                <div class="metric-card">
+                    <h4>CPU Utilization</h4>
+                    <span id="cpuUtilization">-</span>
+                </div>
+            </div>
+
+            <!-- Detailed Results Table -->
+            <div class="detailed-results">
+                <h4>Detailed Process Analysis</h4>
+                <div class="table-container">
+                    <table id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Arrival Time</th>
+                                <th>Burst Time</th>
+                                <th>Completion Time</th>
+                                <th>Turnaround Time</th>
+                                <th>Waiting Time</th>
+                                <th>Response Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Results will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/schedulingAlgorithms.js"></script>
+    <script src="js/ganttChart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html> 

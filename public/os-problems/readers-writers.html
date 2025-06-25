@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styling/style_home.css" />
+    <link rel="stylesheet" href="../styling/style_graph.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@531&display=swap" rel="stylesheet" />
+    <title>Readers-Writers Visualizer</title>
+    <style>
+        .visualization-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .canvas-container {
+            flex: 2;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .controls-panel {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        #rwCanvas {
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .resource-status {
+            margin-top: 20px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .available { background: #27ae60; color: white; }
+        .reading { background: #3498db; color: white; }
+        .writing { background: #e74c3c; color: white; }
+        .waiting { background: #f39c12; color: white; }
+        .thread-list {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .thread-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        .reader-thread { background: #3498db; color: white; }
+        .writer-thread { background: #e74c3c; color: white; }
+        .waiting-thread { background: #f39c12; color: white; }
+        .log-panel {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        .statistics {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        .algorithm-info {
+            background: #e8f4fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navlen">
+        <div class="navbar">
+            <box class="element element-left">
+                <div class="logo-icon">AV</div>
+                <a href="/" class="dynamic-logo">Algorithm Visualizer</a>
+            </box>
+            <box class="element">
+                <a href="os-problems.html" style="margin-right: 15px;">← OS Problems</a>
+                <a href="https://www.linkedin.com/in/shubhamcse27/" target="_blank" style="margin-right: 15px;">
+                    <i class="fab fa-linkedin"></i>LinkedIn</a>
+                <a href="https://github.com/shhbhm" target="_blank">
+                    <i class="fab fa-github-square"></i>Github</a>
+            </box>
+        </div>
+    </div>
+
+    <div class="flex-labels">
+        <div class="flex-label-items">
+            <label for="solution">Solution Type:</label>
+            <select id="solution" name="solution">
+                <option value="first-readers">First Readers Priority</option>
+                <option value="first-writers">First Writers Priority</option>
+                <option value="fair" selected>Fair (No Starvation)</option>
+            </select>
+        </div>
+        <div class="flex-label-items">
+            <label for="readerCount">Active Readers:</label>
+            <select id="readerCount" name="readerCount">
+                <option value="2">2 Readers</option>
+                <option value="3" selected>3 Readers</option>
+                <option value="4">4 Readers</option>
+                <option value="5">5 Readers</option>
+            </select>
+        </div>
+        <div class="flex-label-items">
+            <label for="writerCount">Active Writers:</label>
+            <select id="writerCount" name="writerCount">
+                <option value="1">1 Writer</option>
+                <option value="2" selected>2 Writers</option>
+                <option value="3">3 Writers</option>
+            </select>
+        </div>
+        <div class="flex-label-items">
+            <label for="speed">Simulation Speed:</label>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" value="5" class="slider" id="speed">
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-buttons">
+        <div class="flex-button-items"><button id="startBtn" class="start">START</button></div>
+        <div class="flex-button-items"><button id="pauseBtn" class="refresh">PAUSE</button></div>
+        <div class="flex-button-items"><button id="resetBtn" class="reset">RESET</button></div>
+        <div class="flex-button-items"><button id="stepBtn" class="reset">STEP</button></div>
+    </div>
+
+    <div class="visualization-container">
+        <div class="canvas-container">
+            <canvas id="rwCanvas" width="700" height="500"></canvas>
+            
+            <div class="resource-status">
+                <div class="status-item available" id="resourceStatus">
+                    <span>📚 Shared Resource</span>
+                    <span id="resourceState">AVAILABLE</span>
+                </div>
+                
+                <h4>🔒 Current Access</h4>
+                <div id="activeThreadsList" class="thread-list">
+                    <div style="text-align: center; color: #7f8c8d; padding: 20px;">
+                        No active threads
+                    </div>
+                </div>
+                
+                <h4>⏳ Waiting Queue</h4>
+                <div id="waitingThreadsList" class="thread-list">
+                    <div style="text-align: center; color: #7f8c8d; padding: 20px;">
+                        No waiting threads
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <h3>📖 Readers-Writers Control</h3>
+            
+            <div class="algorithm-info">
+                <h4>🧠 Current Algorithm</h4>
+                <div id="algorithmDescription">
+                    Fair Solution: Uses reader/writer semaphores with turnstile to prevent starvation of both readers and writers.
+                </div>
+            </div>
+            
+            <div class="statistics">
+                <h4>📈 Statistics</h4>
+                <div class="stat-item">
+                    <span>Running Time:</span>
+                    <span id="runningTime">0s</span>
+                </div>
+                <div class="stat-item">
+                    <span>Read Operations:</span>
+                    <span id="readOperations">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Write Operations:</span>
+                    <span id="writeOperations">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Concurrent Readers:</span>
+                    <span id="concurrentReaders">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Avg Reader Wait:</span>
+                    <span id="avgReaderWait">0s</span>
+                </div>
+                <div class="stat-item">
+                    <span>Avg Writer Wait:</span>
+                    <span id="avgWriterWait">0s</span>
+                </div>
+            </div>
+
+            <div class="log-panel" id="logPanel">
+                <div class="log-entry">📚 Readers-Writers Simulator Ready</div>
+                <div class="log-entry">Configure settings and click START to begin</div>
+            </div>
+
+            <div style="margin-top: 15px; font-size: 12px; color: #7f8c8d;">
+                <strong>Legend:</strong><br>
+                🟦 Reading | 🟥 Writing | 🟨 Waiting | ⚪ Idle<br>
+                📚 Resource Available | 🔒 Resource Locked
+            </div>
+        </div>
+    </div>
+
+    <script src="js/readers-writers.js"></script>
+</body>
+</html> 

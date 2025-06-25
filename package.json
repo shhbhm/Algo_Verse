@@ -1,0 +1,13 @@
+{
+  "name": "algoviz",
+  "version": "1.0.0",
+  "description": "Interactive algorithm visualization tool",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Shubham Solanki",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
