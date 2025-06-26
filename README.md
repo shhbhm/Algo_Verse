@@ -1,7 +1,7 @@
 # Algorithm Visualizer
 An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, CPU scheduling algorithms and Classic OS synchronization problems.
 
-Deployed at [@Link](https://algoversebyshhbhm.netlify.app/)
+Deployed at [Link](https://algoversebyshhbhm.netlify.app/)
 
 ## 🎯 Features
 
