@@ -1,7 +1,7 @@
 # Algorithm Visualizer
 An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, CPU scheduling algorithms and Classic OS synchronization problems.
 
-Deployed at https://algoversebyshhbhm.netlify.app/
+Deployed at [@Link](https://algoversebyshhbhm.netlify.app/)
 
 ## 🎯 Features
 
@@ -98,8 +98,6 @@ npm start
 **Shubham Solanki**
 - LinkedIn: [@shubhamcse27](https://www.linkedin.com/in/shubhamcse27/)
 - GitHub: [@shhbhm](https://github.com/shhbhm)
-- Project: [Algorithm Visualizer](https://github.com/shhbhm/AlgoVerse)
-
 ---
 
 ⭐ **Star this repository if you find it helpful!** ⭐
