@@ -201,7 +201,9 @@ class SchedulingAlgorithms {
         return { result, gantt };
     }
 
-    // Round Robin (RR)
+    // Round Robin (RR) - Preemptive scheduling with time quantum
+    // IMPORTANT: If a process finishes before time quantum expires,
+    // it immediately yields CPU to next process (no waiting for full quantum)
     static roundRobin(processes, timeQuantum) {
         const result = [];
         const gantt = [];
@@ -240,8 +242,12 @@ class SchedulingAlgorithms {
                 currentProcess.startTime = currentTime;
             }
 
+            // FIXED: Process executes for minimum of time quantum or remaining time
+            // If process finishes before time quantum expires, it immediately moves to next process
             const executionTime = Math.min(timeQuantum, currentProcess.remainingTime);
             const startTime = currentTime;
+            
+            // Advance time by ONLY the actual execution time (not full quantum if finishing early)
             currentTime += executionTime;
             currentProcess.remainingTime -= executionTime;
 

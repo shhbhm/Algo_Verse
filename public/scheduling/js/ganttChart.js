@@ -224,6 +224,8 @@ class GanttChart {
             legend.appendChild(item);
         });
 
+
+
         this.container.appendChild(legend);
     }
 

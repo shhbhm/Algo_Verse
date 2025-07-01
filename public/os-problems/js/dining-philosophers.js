@@ -24,6 +24,12 @@ class DiningPhilosophers {
         this.setupEventListeners();
         this.updateAlgorithmDescription();
         this.draw();
+        
+        // Log the correct fork assignments for verification
+        this.log('🍴 Fork assignments (Fixed):');
+        this.philosophers.forEach(p => {
+            this.log(`📍 Philosopher ${p.id}: Left fork F${p.leftFork}, Right fork F${p.rightFork}`);
+        });
     }
 
     initializePhilosophers() {
@@ -49,7 +55,7 @@ class DiningPhilosophers {
                 totalWaitTime: 0,
                 mealsEaten: 0,
                 leftFork: i,
-                rightFork: (i + 1) % this.numPhilosophers,
+                rightFork: (i - 1 + this.numPhilosophers) % this.numPhilosophers,
                 hasLeftFork: false,
                 hasRightFork: false,
                 lastStateChange: Date.now()
@@ -99,7 +105,7 @@ class DiningPhilosophers {
     }
 
     updateAlgorithmDescription() {
-        const description = 'Resource Hierarchy: Philosophers pick up forks in order (lower ID first) to prevent circular wait and deadlock.';
+        const description = 'Resource Hierarchy: Philosophers acquire forks in ascending order of fork IDs to prevent circular wait and deadlock. Each philosopher has specific left/right fork assignments based on their circular table position.';
         
         document.getElementById('algorithmDescription').innerHTML = 
             `<small style="color: #7f8c8d;">${description}</small>`;

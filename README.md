@@ -1,6 +1,6 @@
-# Algorithm Visualizer
+# AlgoVerse
 
-An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, and CPU scheduling algorithms.
+An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, CPU scheduling algorithms, and classic OS synchronization problems.
 
 ## 🎯 Features
 
@@ -97,7 +97,7 @@ npm start
 **Shubham Solanki**
 - LinkedIn: [@shubhamcse27](https://www.linkedin.com/in/shubhamcse27/)
 - GitHub: [@shhbhm](https://github.com/shhbhm)
-- Project: [Algorithm Visualizer](https://github.com/shhbhm/AlgoVerse)
+- Project: [AlgoVerse](https://github.com/shhbhm/AlgoVerse)
 
 ---
 
