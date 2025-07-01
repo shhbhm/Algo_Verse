@@ -2,6 +2,8 @@
 
 An interactive web-based tool for visualizing various algorithms including pathfinding, sorting, CPU scheduling algorithms, and classic OS synchronization problems.
 
+Deployed at [Link](https://algoversebyshhbhm.netlify.app/)
+
 ## 🎯 Features
 
 ### 🗺️ Pathfinding Algorithms
@@ -30,7 +32,6 @@ An interactive web-based tool for visualizing various algorithms including pathf
 
 ### 🔧 Classic OS Problems
 - **Dining Philosophers** - Resource hierarchy solution for deadlock prevention
-- **Sleeping Barber** - Bounded buffer synchronization with customer arrivals  
 - **Producer-Consumer** - Multi-threaded buffer management with semaphores
 - **Readers-Writers** - Multiple solution strategies (First Readers, First Writers, Fair)
 - Interactive simulations with real-time statistics and logging
